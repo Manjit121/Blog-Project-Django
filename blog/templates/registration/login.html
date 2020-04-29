@@ -1,0 +1,16 @@
+{% extends 'blog/base.html'%}
+{% block content%}
+<div class="jumbotron">
+  <h2>Login Please:</h2>
+  <h3>Must be SuperUser, Please contact site admin.</h3>
+  {% if form.errors %}
+  <p>Username and Password doesn't match! Please try again.</p>
+  {% endif %}
+  <form action={% url  'login'%} method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Login" class="btn btn-primary">
+    <input type="hidden" name="next" value="{{next}}">
+  </form>
+</div>
+{% endblock %}
